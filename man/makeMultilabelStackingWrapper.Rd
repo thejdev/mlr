@@ -7,15 +7,15 @@
 makeMultilabelStackingWrapper(learner, cv.folds = 2)
 }
 \arguments{
-\item{learner}{([Learner] | `character(1)`)\cr
+\item{learner}{(\link{Learner} | \code{character(1)})\cr
 The learner.
-If you pass (`character(1)`) string the learner will be created via [makeLearner].}
+If you pass a string the learner will be created via \link{makeLearner}.}
 
-\item{cv.folds}{(`integer(1)`)\cr
-The number of folds for the inner cross validation method to predict labels for the augmented feature space. Default is `2`.}
+\item{cv.folds}{(\code{integer(1)})\cr
+The number of folds for the inner cross validation method to predict labels for the augmented feature space. Default is \code{2}.}
 }
 \value{
-[Learner].
+\link{Learner}.
 }
 \description{
 Every learner which is implemented in mlr and which supports binary
@@ -80,3 +80,5 @@ Other multilabel: \code{\link{getMultilabelBinaryPerformances}},
   \code{\link{makeMultilabelDBRWrapper}},
   \code{\link{makeMultilabelNestedStackingWrapper}}
 }
+\concept{multilabel}
+\concept{wrapper}

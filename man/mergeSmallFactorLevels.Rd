@@ -8,7 +8,7 @@ mergeSmallFactorLevels(task, cols = NULL, min.perc = 0.01,
   new.level = ".merged")
 }
 \arguments{
-\item{task}{([Task])\cr
+\item{task}{(\link{Task})\cr
 The task.}
 
 \item{cols}{(\link{character})
@@ -39,3 +39,4 @@ Other eda_and_preprocess: \code{\link{capLargeValues}},
   \code{\link{removeConstantFeatures}},
   \code{\link{summarizeColumns}}
 }
+\concept{eda_and_preprocess}

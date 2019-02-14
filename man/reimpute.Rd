@@ -7,7 +7,7 @@
 reimpute(obj, desc)
 }
 \arguments{
-\item{obj}{([data.frame] | [Task])\cr
+\item{obj}{(\link{data.frame} | \link{Task})\cr
 Input data.}
 
 \item{desc}{(\code{ImputationDesc})\cr
@@ -33,3 +33,4 @@ Other impute: \code{\link{imputations}},
   \code{\link{impute}}, \code{\link{makeImputeMethod}},
   \code{\link{makeImputeWrapper}}
 }
+\concept{impute}

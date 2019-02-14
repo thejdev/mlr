@@ -5,10 +5,10 @@
 \alias{PartialDependenceData}
 \title{Generate partial dependence.}
 \usage{
-generatePartialDependenceData(obj, input, features, interaction = FALSE,
-  derivative = FALSE, individual = FALSE, fun = mean,
-  bounds = c(qnorm(0.025), qnorm(0.975)), uniform = TRUE, n = c(10, NA),
-  ...)
+generatePartialDependenceData(obj, input, features = NULL,
+  interaction = FALSE, derivative = FALSE, individual = FALSE,
+  fun = mean, bounds = c(qnorm(0.025), qnorm(0.975)), uniform = TRUE,
+  n = c(10, NA), ...)
 }
 \arguments{
 \item{obj}{(\link{WrappedModel})\cr
@@ -25,7 +25,7 @@ If not specified all features in the \code{input} will be used.}
 Whether the \code{features} should be interacted or not. If \code{TRUE} then the Cartesian product of the
 prediction grid for each feature is taken, and the partial dependence at each unique combination of
 values of the features is estimated. Note that if the length of \code{features} is greater than two,
-\link{plotPartialDependence} and \link{plotPartialDependenceGGVIS} cannot be used.
+\link{plotPartialDependence} cannot be used.
 If \code{FALSE} each feature is considered separately. In this case \code{features} can be much longer
 than two.
 Default is \code{FALSE}.}
@@ -124,8 +124,7 @@ Goldstein, Alex, Adam Kapelner, Justin Bleich, and Emil Pitkin. \dQuote{Peeking 
 Friedman, Jerome. \dQuote{Greedy Function Approximation: A Gradient Boosting Machine.} The Annals of Statistics. Vol. 29. No. 5 (2001): 1189-1232.
 }
 \seealso{
-Other partial_dependence: \code{\link{plotPartialDependenceGGVIS}},
-  \code{\link{plotPartialDependence}}
+Other partial_dependence: \code{\link{plotPartialDependence}}
 
 Other generate_plot_data: \code{\link{generateCalibrationData}},
   \code{\link{generateCritDifferencesData}},
@@ -133,6 +132,7 @@ Other generate_plot_data: \code{\link{generateCalibrationData}},
   \code{\link{generateFilterValuesData}},
   \code{\link{generateLearningCurveData}},
   \code{\link{generateThreshVsPerfData}},
-  \code{\link{getFilterValues}},
   \code{\link{plotFilterValues}}
 }
+\concept{generate_plot_data}
+\concept{partial_dependence}

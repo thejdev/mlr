@@ -77,7 +77,7 @@ Name of the measure. Default is `id`.}
 Description and additional notes for the measure. Default is \dQuote{}.}
 }
 \value{
-[Measure].
+\link{Measure}.
 }
 \description{
 A measure object encapsulates a function to evaluate the performance of a prediction.
@@ -90,16 +90,16 @@ the fitted model and the prediction.
 
 Object slots:
 \describe{
-  \item{id (`character(1)`)}{See argument.}
-  \item{minimize (`logical(1)`)}{See argument.}
-  \item{properties ([character])}{See argument.}
-  \item{fun (`function])}{See argument.}
-  \item{extra.args ([list])}{See argument.}
-  \item{aggr ([Aggregation])}{See argument.}
-  \item{best (`numeric(1)`)}{See argument.}
-  \item{worst (`numeric(1)`)}{See argument.}
-  \item{name (`character(1)`)}{See argument.}
-  \item{note (`character(1)`)}{See argument.}
+  \item{id (character(1))}{See argument.}
+  \item{minimize (logical(1))}{See argument.}
+  \item{properties (character)}{See argument.}
+  \item{fun (function)}{See argument.}
+  \item{extra.args (list)}{See argument.}
+  \item{aggr (Aggregation)}{See argument.}
+  \item{best (numeric(1))}{See argument.}
+  \item{worst (numeric(1))}{See argument.}
+  \item{name (character(1))}{See argument.}
+  \item{note (character(1))}{See argument.}
 }
 }
 \examples{
@@ -118,3 +118,4 @@ Other performance: \code{\link{ConfusionMatrix}},
   \code{\link{setAggregation}},
   \code{\link{setMeasurePars}}
 }
+\concept{performance}

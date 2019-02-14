@@ -5,19 +5,19 @@
 \alias{ThreshVsPerfData}
 \title{Generate threshold vs. performance(s) for 2-class classification.}
 \usage{
-generateThreshVsPerfData(obj, measures, gridsize = 100L, aggregate = TRUE,
-  task.id = NULL)
+generateThreshVsPerfData(obj, measures, gridsize = 100L,
+  aggregate = TRUE, task.id = NULL)
 }
 \arguments{
-\item{obj}{(list of [Prediction] | list of [ResampleResult] | [BenchmarkResult])\cr
-Single prediction object, list of them, single resample result, list of them, or `character(1)` benchmark result.
-In case of `character(1)` list probably produced by different learners you want to compare, then
+\item{obj}{(list of \link{Prediction} | list of \link{ResampleResult} | \link{BenchmarkResult})\cr
+Single prediction object, list of them, single resample result, list of them, or a benchmark result.
+In case of a list probably produced by different learners you want to compare, then
 name the list with the names you want to see in the plots, probably
 learner shortnames or ids.}
 
-\item{measures}{([Measure] | list of [Measure])\cr
+\item{measures}{(\link{Measure} | list of \link{Measure})\cr
 Performance measure(s) to evaluate.
-Default is the default measure for the task, see here [getDefaultMeasure].}
+Default is the default measure for the task, see here \link{getDefaultMeasure}.}
 
 \item{gridsize}{(\code{integer(1)})\cr
 Grid resolution for x-axis (threshold).
@@ -47,10 +47,10 @@ Other generate_plot_data: \code{\link{generateCalibrationData}},
   \code{\link{generateFilterValuesData}},
   \code{\link{generateLearningCurveData}},
   \code{\link{generatePartialDependenceData}},
-  \code{\link{getFilterValues}},
   \code{\link{plotFilterValues}}
 
 Other thresh_vs_perf: \code{\link{plotROCCurves}},
-  \code{\link{plotThreshVsPerfGGVIS}},
   \code{\link{plotThreshVsPerf}}
 }
+\concept{generate_plot_data}
+\concept{thresh_vs_perf}

@@ -7,7 +7,7 @@
 summarizeLevels(obj, cols = NULL)
 }
 \arguments{
-\item{obj}{([data.frame] | [Task])\cr
+\item{obj}{(\link{data.frame} | \link{Task})\cr
 Input data.}
 
 \item{cols}{(\link{character})\cr
@@ -20,3 +20,5 @@ Default is all factor, character and logical columns of \code{obj}.}
 \description{
 Characters and logicals will be treated as factors.
 }
+\concept{eda_and_preprocess
+summarizeLevels(iris)}

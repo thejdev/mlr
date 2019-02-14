@@ -19,38 +19,38 @@
 makeRLearner()
 
 makeRLearnerClassif(cl, package, par.set, par.vals = list(),
-  properties = character(0L), name = cl, short.name = cl, note = "",
-  class.weights.param = NULL, callees = character(0L))
+  properties = character(0L), name = cl, short.name = cl,
+  note = "", class.weights.param = NULL, callees = character(0L))
 
 makeRLearnerMultilabel(cl, package, par.set, par.vals = list(),
-  properties = character(0L), name = cl, short.name = cl, note = "",
-  callees = character(0L))
+  properties = character(0L), name = cl, short.name = cl,
+  note = "", callees = character(0L))
 
 makeRLearnerRegr(cl, package, par.set, par.vals = list(),
-  properties = character(0L), name = cl, short.name = cl, note = "",
-  callees = character(0L))
+  properties = character(0L), name = cl, short.name = cl,
+  note = "", callees = character(0L))
 
 makeRLearnerSurv(cl, package, par.set, par.vals = list(),
-  properties = character(0L), name = cl, short.name = cl, note = "",
-  callees = character(0L))
+  properties = character(0L), name = cl, short.name = cl,
+  note = "", callees = character(0L))
 
 makeRLearnerCluster(cl, package, par.set, par.vals = list(),
-  properties = character(0L), name = cl, short.name = cl, note = "",
-  callees = character(0L))
+  properties = character(0L), name = cl, short.name = cl,
+  note = "", callees = character(0L))
 
 makeRLearnerCostSens(cl, package, par.set, par.vals = list(),
-  properties = character(0L), name = cl, short.name = cl, note = "",
-  callees = character(0L))
+  properties = character(0L), name = cl, short.name = cl,
+  note = "", callees = character(0L))
 }
 \arguments{
-\item{cl}{(`character(1)`)\cr
+\item{cl}{(\code{character(1)})\cr
 Class of learner. By convention, all classification learners
 start with \dQuote{classif.} all regression learners with
 \dQuote{regr.} all survival learners start with \dQuote{surv.}
 all clustering learners with \dQuote{cluster.} and all multilabel
 classification learners start with \dQuote{multilabel.}.
 A list of all integrated learners is available on the
-[learners] help page.}
+\link{learners} help page.}
 
 \item{package}{(\link{character})\cr
 Package(s) to load for the implementation of the learner.}
@@ -105,7 +105,7 @@ features of the learner.
 
 For a general overview on how to integrate a learning algorithm into mlr's system, please read the
 section in the online tutorial:
-\url{http://mlr-org.github.io/mlr-tutorial/release/html/create_learner/index.html}
+\url{https://mlr.mlr-org.com/articles/tutorial/create_learner.html}
 
 To see all possible properties of a learner, go to: \link{LearnerProperties}.
 }

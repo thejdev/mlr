@@ -4,13 +4,13 @@
 \alias{makeSMOTEWrapper}
 \title{Fuse learner with SMOTE oversampling for imbalancy correction in binary classification.}
 \usage{
-makeSMOTEWrapper(learner, sw.rate = 1, sw.nn = 5L, sw.standardize = TRUE,
-  sw.alt.logic = FALSE)
+makeSMOTEWrapper(learner, sw.rate = 1, sw.nn = 5L,
+  sw.standardize = TRUE, sw.alt.logic = FALSE)
 }
 \arguments{
-\item{learner}{([Learner] | `character(1)`)\cr
+\item{learner}{(\link{Learner} | \code{character(1)})\cr
 The learner.
-If you pass (`character(1)`) string the learner will be created via [makeLearner].}
+If you pass a string the learner will be created via \link{makeLearner}.}
 
 \item{sw.rate}{(\code{numeric(1)})\cr
 Factor to oversample the smaller class. Must be between 1 and \code{Inf},
@@ -37,7 +37,7 @@ is sampled.
 Default is \code{FALSE}.}
 }
 \value{
-[Learner].
+\link{Learner}.
 }
 \description{
 Creates a learner object, which can be
@@ -73,3 +73,4 @@ Other wrapper: \code{\link{makeBaggingWrapper}},
   \code{\link{makeUndersampleWrapper}},
   \code{\link{makeWeightedClassesWrapper}}
 }
+\concept{wrapper}

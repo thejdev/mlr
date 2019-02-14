@@ -4,11 +4,11 @@
 \alias{getTaskFormula}
 \title{Get formula of a task.}
 \usage{
-getTaskFormula(x, target = getTaskTargetNames(x), explicit.features = FALSE,
-  env = parent.frame())
+getTaskFormula(x, target = getTaskTargetNames(x),
+  explicit.features = FALSE, env = parent.frame())
 }
 \arguments{
-\item{x}{([Task] | [TaskDesc])\cr
+\item{x}{(\link{Task} | \link{TaskDesc})\cr
 Task or its description object.}
 
 \item{target}{(\code{character(1)})\cr
@@ -41,3 +41,4 @@ Other task: \code{\link{getTaskClassLevels}},
   \code{\link{getTaskTargets}}, \code{\link{getTaskType}},
   \code{\link{subsetTask}}
 }
+\concept{task}

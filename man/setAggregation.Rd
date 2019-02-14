@@ -10,7 +10,7 @@ setAggregation(measure, aggr)
 \item{measure}{(\link{Measure})\cr
 Performance measure.}
 
-\item{aggr}{([Aggregation])\cr
+\item{aggr}{(\link{Aggregation})\cr
 Aggregation function.}
 }
 \value{
@@ -30,3 +30,4 @@ Other performance: \code{\link{ConfusionMatrix}},
   \code{\link{makeMeasure}}, \code{\link{measures}},
   \code{\link{performance}}, \code{\link{setMeasurePars}}
 }
+\concept{performance}

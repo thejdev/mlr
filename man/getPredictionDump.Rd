@@ -7,7 +7,7 @@
 getPredictionDump(pred)
 }
 \arguments{
-\item{pred}{([Prediction])\cr
+\item{pred}{(\link{Prediction})\cr
 Prediction object.}
 }
 \value{
@@ -22,3 +22,4 @@ prediction did not fail, this returns \code{NULL}.
 Other debug: \code{\link{FailureModel}},
   \code{\link{ResampleResult}}, \code{\link{getRRDump}}
 }
+\concept{debug}

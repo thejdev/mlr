@@ -111,7 +111,6 @@
 \alias{multilabel.subset01}
 \alias{measureMultilabelSubset01}
 \alias{multilabel.f1}
-\alias{measureMultiLabelF1}
 \alias{measureMultilabelF1}
 \alias{multilabel.acc}
 \alias{measureMultilabelACC}
@@ -277,7 +276,7 @@ measureBrierScaled(probabilities, truth, negative, positive)
 
 bac
 
-measureBAC(truth, response, negative, positive)
+measureBAC(truth, response)
 
 tp
 
@@ -349,8 +348,6 @@ measureMultilabelSubset01(truth, response)
 
 multilabel.f1
 
-measureMultiLabelF1(truth, response)
-
 measureMultilabelF1(truth, response)
 
 multilabel.acc
@@ -411,7 +408,7 @@ of the prediction (or maybe only the model, think AIC).
 The measure itself knows whether it wants to be minimized or maximized and for what tasks it is applicable.
 
 All supported measures can be found by \link{listMeasures} or as a table
-in the tutorial appendix: \url{http://mlr-org.github.io/mlr-tutorial/release/html/measures/}.
+in the tutorial appendix: \url{https://mlr.mlr-org.com/articles/tutorial/measures.html}.
 
 If you want a measure for a misclassification cost matrix, look at \link{makeCostMeasure}.
 If you want to implement your own measure, look at \link{makeMeasure}.
@@ -423,8 +420,6 @@ starting with 1. If this is not the case, some of the measures will generate war
 
 Some measure have parameters. Their defaults are set in the constructor \link{makeMeasure} and can be
 overwritten using \link{setMeasurePars}.
-
-Deprecated, use \code{measureMultilabelF1} instead.
 }
 \references{
 He, H. & Garcia, E. A. (2009)
@@ -433,11 +428,11 @@ IEEE Transactions on Knowledge and Data Engineering, vol. 21, no. 9. pp. 1263-12
 
 H. Uno et al.
 \emph{On the C-statistics for Evaluating Overall Adequacy of Risk Prediction Procedures with Censored Survival Data}
-Statistics in medicine. 2011;30(10):1105-1117. \url{http://dx.doi.org/10.1002/sim.4154}.
+Statistics in medicine. 2011;30(10):1105-1117. \url{https://doi.org/10.1002/sim.4154}.
 
 H. Uno et al.
 \emph{Evaluating Prediction Rules for T-Year Survivors with Censored Regression Models}
-Journal of the American Statistical Association 102, no. 478 (2007): 527-37. \url{http://www.jstor.org/stable/27639883}.
+Journal of the American Statistical Association 102, no. 478 (2007): 527-37. \url{https://www.jstor.org/stable/27639883}.
 }
 \seealso{
 Other performance: \code{\link{ConfusionMatrix}},
@@ -450,4 +445,5 @@ Other performance: \code{\link{ConfusionMatrix}},
   \code{\link{setAggregation}},
   \code{\link{setMeasurePars}}
 }
+\concept{performance}
 \keyword{datasets}

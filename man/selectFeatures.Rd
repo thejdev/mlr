@@ -4,15 +4,15 @@
 \alias{selectFeatures}
 \title{Feature selection by wrapper approach.}
 \usage{
-selectFeatures(learner, task, resampling, measures, bit.names, bits.to.features,
-  control, show.info = getMlrOption("show.info"))
+selectFeatures(learner, task, resampling, measures, bit.names,
+  bits.to.features, control, show.info = getMlrOption("show.info"))
 }
 \arguments{
-\item{learner}{([Learner] | `character(1)`)\cr
+\item{learner}{(\link{Learner} | \code{character(1)})\cr
 The learner.
-If you pass (`character(1)`) string the learner will be created via [makeLearner].}
+If you pass a string the learner will be created via \link{makeLearner}.}
 
-\item{task}{([Task])\cr
+\item{task}{(\link{Task})\cr
 The task.}
 
 \item{resampling}{([ResampleInstance] | [ResampleDesc])\cr
@@ -20,26 +20,28 @@ Resampling strategy for feature selection. If you pass a description,
 it is instantiated once at the beginning by default, so all points are evaluated on the same training/test sets.
 If you want to change that behaviour, look at [FeatSelControl].}
 
-\item{measures}{(list of [Measure] | [Measure])\cr
+\item{measures}{(list of \link{Measure} | \link{Measure})\cr
 Performance measures to evaluate. The first measure, aggregated by the first aggregation function
 is optimized, others are simply evaluated.
-Default is the default measure for the task, see here [getDefaultMeasure].}
+Default is the default measure for the task, see here \link{getDefaultMeasure}.}
 
 \item{bit.names}{[character]\cr
 Names of bits encoding the solutions. Also defines the total number of bits in the encoding.
-Per default these are the feature names of the task.}
+Per default these are the feature names of the task.
+Has to be used together with `bits.to.features`.}
 
 \item{bits.to.features}{[function(x, task)]\cr
 Function which transforms an integer-0-1 vector into a character vector of selected features.
-Per default a value of 1 in the ith bit selects the ith feature to be in the candidate solution.}
+Per default a value of 1 in the ith bit selects the ith feature to be in the candidate solution.
+The vector `x` will correspond to the `bit.names` and has to be of the same length.}
 
 \item{control}{[see [FeatSelControl])
 Control object for search method.
 Also selects the optimization algorithm for feature selection.}
 
-\item{show.info}{(`logical(1)`)\cr
+\item{show.info}{(\code{logical(1)})\cr
 Print verbose output on console?
-Default is set via [configureMlr].}
+Default is set via \link{configureMlr}.}
 }
 \value{
 ([FeatSelResult]).
@@ -69,3 +71,4 @@ Other featsel: \code{\link{FeatSelControl}},
   \code{\link{getFeatSelResult}},
   \code{\link{makeFeatSelWrapper}}
 }
+\concept{featsel}

@@ -14,14 +14,15 @@
 \title{Create control structures for feature selection.}
 \usage{
 makeFeatSelControlExhaustive(same.resampling.instance = TRUE,
-  maxit = NA_integer_, max.features = NA_integer_, tune.threshold = FALSE,
-  tune.threshold.args = list(), log.fun = "default")
-
-makeFeatSelControlGA(same.resampling.instance = TRUE, impute.val = NULL,
-  maxit = NA_integer_, max.features = NA_integer_, comma = FALSE,
-  mu = 10L, lambda, crossover.rate = 0.5, mutation.rate = 0.05,
+  maxit = NA_integer_, max.features = NA_integer_,
   tune.threshold = FALSE, tune.threshold.args = list(),
   log.fun = "default")
+
+makeFeatSelControlGA(same.resampling.instance = TRUE,
+  impute.val = NULL, maxit = NA_integer_, max.features = NA_integer_,
+  comma = FALSE, mu = 10L, lambda, crossover.rate = 0.5,
+  mutation.rate = 0.05, tune.threshold = FALSE,
+  tune.threshold.args = list(), log.fun = "default")
 
 makeFeatSelControlRandom(same.resampling.instance = TRUE, maxit = 100L,
   max.features = NA_integer_, prob = 0.5, tune.threshold = FALSE,
@@ -29,8 +30,9 @@ makeFeatSelControlRandom(same.resampling.instance = TRUE, maxit = 100L,
 
 makeFeatSelControlSequential(same.resampling.instance = TRUE,
   impute.val = NULL, method, alpha = 0.01, beta = -0.001,
-  maxit = NA_integer_, max.features = NA_integer_, tune.threshold = FALSE,
-  tune.threshold.args = list(), log.fun = "default")
+  maxit = NA_integer_, max.features = NA_integer_,
+  tune.threshold = FALSE, tune.threshold.args = list(),
+  log.fun = "default")
 }
 \arguments{
 \item{same.resampling.instance}{(\code{logical(1)})\cr
@@ -70,13 +72,13 @@ See the implementation for details.}
 \item{impute.val}{(\link{numeric})\cr
 If something goes wrong during optimization (e.g. the learner crashes),
 this value is fed back to the tuner, so the tuning algorithm does not abort.
-It is not stored in the optimization path, an NA and (\code{character(1)}) corresponding error message are
+It is not stored in the optimization path, an NA and a corresponding error message are
 logged instead.
 Note that this value is later multiplied by -1 for maximization measures internally, so you
-need to enter \code{character(1)} larger positive value for maximization here as well.
+need to enter a larger positive value for maximization here as well.
 Default is the worst obtainable value of the performance measure you optimize for when
 you aggregate by mean value, or \code{Inf} instead.
-For multi-criteria optimization pass \code{character(1)} vector of imputation values, one for each of your measures,
+For multi-criteria optimization pass a vector of imputation values, one for each of your measures,
 in the same order as your measures.}
 
 \item{comma}{(\code{logical(1)})\cr
@@ -174,3 +176,4 @@ Other featsel: \code{\link{analyzeFeatSelResult}},
   \code{\link{makeFeatSelWrapper}},
   \code{\link{selectFeatures}}
 }
+\concept{featsel}

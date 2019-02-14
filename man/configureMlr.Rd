@@ -64,7 +64,7 @@ is \dQuote{warn} or \dQuote{quiet}. If it is \code{TRUE}, the dump can be access
 Default is \code{FALSE}.}
 }
 \value{
-(`invisible(NULL)`).
+(\code{invisible(NULL)}).
 }
 \description{
 Configuration is done by setting custom \link{options}.
@@ -76,3 +76,4 @@ If you call this function with an empty argument list, everything is set to its 
 \seealso{
 Other configure: \code{\link{getMlrOptions}}
 }
+\concept{configure}

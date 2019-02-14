@@ -19,7 +19,7 @@ Optional list of named (hyper)parameter settings. The arguments in
 \code{...} take precedence over values in this list.}
 }
 \value{
-[Measure].
+\link{Measure}.
 }
 \description{
 Sets hyperparameters of measures.
@@ -34,3 +34,4 @@ Other performance: \code{\link{ConfusionMatrix}},
   \code{\link{makeMeasure}}, \code{\link{measures}},
   \code{\link{performance}}, \code{\link{setAggregation}}
 }
+\concept{performance}

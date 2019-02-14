@@ -4,8 +4,6 @@
 \alias{MeasureProperties}
 \alias{getMeasureProperties}
 \alias{hasMeasureProperties}
-\alias{getMeasureProperties}
-\alias{hasMeasureProperties}
 \title{Query properties of measures.}
 \usage{
 getMeasureProperties(measure)
@@ -13,7 +11,7 @@ getMeasureProperties(measure)
 hasMeasureProperties(measure, props)
 }
 \arguments{
-\item{measure}{([Measure])\cr
+\item{measure}{(\link{Measure})\cr
 Performance measure.
 Default is the first measure used in the benchmark experiment.}
 

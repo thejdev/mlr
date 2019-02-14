@@ -4,8 +4,8 @@
 \alias{plotResiduals}
 \title{Create residual plots for prediction objects or benchmark results.}
 \usage{
-plotResiduals(obj, type = "scatterplot", loess.smooth = TRUE, rug = TRUE,
-  pretty.names = TRUE)
+plotResiduals(obj, type = "scatterplot", loess.smooth = TRUE,
+  rug = TRUE, pretty.names = TRUE)
 }
 \arguments{
 \item{obj}{(\link{Prediction} | \link{BenchmarkResult})\cr
@@ -37,17 +37,15 @@ Plots for model diagnostics. Provides scatterplots of true vs. predicted values
 and histograms of the model's residuals.
 }
 \seealso{
-Other plot: \code{\link{plotBMRBoxplots}},
+Other plot: \code{\link{createSpatialResamplingPlots}},
+  \code{\link{plotBMRBoxplots}},
   \code{\link{plotBMRRanksAsBarChart}},
   \code{\link{plotBMRSummary}},
   \code{\link{plotCalibration}},
   \code{\link{plotCritDifferences}},
-  \code{\link{plotFilterValuesGGVIS}},
-  \code{\link{plotLearningCurveGGVIS}},
   \code{\link{plotLearningCurve}},
-  \code{\link{plotPartialDependenceGGVIS}},
   \code{\link{plotPartialDependence}},
   \code{\link{plotROCCurves}},
-  \code{\link{plotThreshVsPerfGGVIS}},
   \code{\link{plotThreshVsPerf}}
 }
+\concept{plot}

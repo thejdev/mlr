@@ -7,9 +7,9 @@
 makeWeightedClassesWrapper(learner, wcw.param = NULL, wcw.weight = 1)
 }
 \arguments{
-\item{learner}{([Learner] | `character(1)`)\cr
+\item{learner}{(\link{Learner} | \code{character(1)})\cr
 The classification learner.
-If you pass (`character(1)`) string the learner will be created via [makeLearner].}
+If you pass a string the learner will be created via \link{makeLearner}.}
 
 \item{wcw.param}{(\code{character(1)})\cr
 Name of already existing learner parameter, which allows class weighting.
@@ -29,7 +29,7 @@ of 1.
 Default is 1.}
 }
 \value{
-[Learner].
+\link{Learner}.
 }
 \description{
 Creates a wrapper, which can be used like any other learner object.
@@ -54,6 +54,7 @@ We set this weight depending on the class internally in the wrapper. Basically w
 something like a new \dQuote{class.weights} parameter for the learner via observation weights.
 }
 \examples{
+set.seed(123)
 # using the direct parameter of the SVM (which is already defined in the learner)
 lrn = makeWeightedClassesWrapper("classif.ksvm", wcw.weight = 0.01)
 res = holdout(lrn, sonar.task)
@@ -75,7 +76,7 @@ ctrl = makeTuneControlRandom(maxit = 3L)
 rdesc = makeResampleDesc("CV", iters = 2L, stratify = TRUE)
 res = tuneParams(lrn, sonar.task, rdesc, par.set = ps, control = ctrl)
 print(res)
-print(res$opt.path)
+# print(res$opt.path)
 }
 \seealso{
 Other wrapper: \code{\link{makeBaggingWrapper}},
@@ -103,3 +104,4 @@ Other wrapper: \code{\link{makeBaggingWrapper}},
   \code{\link{makeTuneWrapper}},
   \code{\link{makeUndersampleWrapper}}
 }
+\concept{wrapper}

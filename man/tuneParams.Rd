@@ -8,11 +8,11 @@ tuneParams(learner, task, resampling, measures, par.set, control,
   show.info = getMlrOption("show.info"), resample.fun = resample)
 }
 \arguments{
-\item{learner}{([Learner] | `character(1)`)\cr
+\item{learner}{(\link{Learner} | \code{character(1)})\cr
 The learner.
-If you pass (`character(1)`) string the learner will be created via [makeLearner].}
+If you pass a string the learner will be created via \link{makeLearner}.}
 
-\item{task}{([Task])\cr
+\item{task}{(\link{Task})\cr
 The task.}
 
 \item{resampling}{(\link{ResampleInstance} | \link{ResampleDesc})\cr
@@ -21,10 +21,10 @@ it is instantiated once at the beginning by default, so all points are
 evaluated on the same training/test sets.
 If you want to change that behavior, look at \link{TuneControl}.}
 
-\item{measures}{(list of [Measure] | [Measure])\cr
+\item{measures}{(list of \link{Measure} | \link{Measure})\cr
 Performance measures to evaluate. The first measure, aggregated by the first aggregation function
 is optimized, others are simply evaluated.
-Default is the default measure for the task, see here [getDefaultMeasure].}
+Default is the default measure for the task, see here \link{getDefaultMeasure}.}
 
 \item{par.set}{(\link[ParamHelpers:ParamSet]{ParamHelpers::ParamSet})\cr
 Collection of parameters and their constraints for optimization.
@@ -34,9 +34,9 @@ Dependent parameters with a \code{requires} field must use \code{quote} and not
 \item{control}{(\link{TuneControl})\cr
 Control object for search method. Also selects the optimization algorithm for tuning.}
 
-\item{show.info}{(`logical(1)`)\cr
+\item{show.info}{(\code{logical(1)})\cr
 Print verbose output on console?
-Default is set via [configureMlr].}
+Default is set via \link{configureMlr}.}
 
 \item{resample.fun}{(\link{closure})\cr
 The function to use for resampling. Defaults to \link{resample}. If a user-given function
@@ -66,6 +66,7 @@ sure to appropriately adjust the resampling strategy and the aggregation for
 the measure. See example code below.
 }
 \examples{
+set.seed(123)
 # a grid search for an SVM (with a tiny number of points...)
 # note how easily we can optimize on a log-scale
 ps = makeParamSet(
@@ -77,11 +78,15 @@ rdesc = makeResampleDesc("CV", iters = 2L)
 res = tuneParams("classif.ksvm", iris.task, rdesc, par.set = ps, control = ctrl)
 print(res)
 # access data for all evaluated points
-print(head(as.data.frame(res$opt.path)))
-print(head(as.data.frame(res$opt.path, trafo = TRUE)))
+df = as.data.frame(res$opt.path)
+df1 = as.data.frame(res$opt.path, trafo = TRUE)
+print(head(df[, -ncol(df)]))
+print(head(df1[, -ncol(df)]))
 # access data for all evaluated points - alternative
-print(head(generateHyperParsEffectData(res)))
-print(head(generateHyperParsEffectData(res, trafo = TRUE)))
+df2 = generateHyperParsEffectData(res)
+df3 = generateHyperParsEffectData(res, trafo = TRUE)
+print(head(df2$data[, -ncol(df2$data)]))
+print(head(df3$data[, -ncol(df3$data)]))
 
 \dontrun{
 # we optimize the SVM over 3 kernels simultanously
@@ -99,14 +104,16 @@ ctrl = makeTuneControlIrace(maxExperiments = 5, nbIterations = 1, minNbSurvival 
 rdesc = makeResampleDesc("Holdout")
 res = tuneParams("classif.ksvm", iris.task, rdesc, par.set = ps, control = ctrl)
 print(res)
-print(head(as.data.frame(res$opt.path)))
+df = as.data.frame(res$opt.path)
+print(head(df[, -ncol(df)]))
 
 # include the training set performance as well
 rdesc = makeResampleDesc("Holdout", predict = "both")
 res = tuneParams("classif.ksvm", iris.task, rdesc, par.set = ps,
   control = ctrl, measures = list(mmce, setAggregation(mmce, train.mean)))
 print(res)
-print(head(as.data.frame(res$opt.path)))
+df2 = as.data.frame(res$opt.path)
+print(head(df2[, -ncol(df2)]))
 }
 }
 \seealso{
@@ -115,6 +122,7 @@ print(head(as.data.frame(res$opt.path)))
 Other tune: \code{\link{TuneControl}},
   \code{\link{getNestedTuneResultsOptPathDf}},
   \code{\link{getNestedTuneResultsX}},
+  \code{\link{getResamplingIndices}},
   \code{\link{getTuneResult}},
   \code{\link{makeModelMultiplexerParamSet}},
   \code{\link{makeModelMultiplexer}},
@@ -128,3 +136,4 @@ Other tune: \code{\link{TuneControl}},
   \code{\link{makeTuneWrapper}},
   \code{\link{tuneThreshold}}
 }
+\concept{tune}

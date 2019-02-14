@@ -7,7 +7,7 @@
 summarizeColumns(obj)
 }
 \arguments{
-\item{obj}{([data.frame] | [Task])\cr
+\item{obj}{(\link{data.frame} | \link{Task})\cr
 Input data.}
 }
 \value{
@@ -43,3 +43,4 @@ Other eda_and_preprocess: \code{\link{capLargeValues}},
   \code{\link{normalizeFeatures}},
   \code{\link{removeConstantFeatures}}
 }
+\concept{eda_and_preprocess}

@@ -7,7 +7,7 @@
 #' The measure itself knows whether it wants to be minimized or maximized and for what tasks it is applicable.
 #'
 #' All supported measures can be found by [listMeasures] or as a table
-#' in the tutorial appendix: <http://mlr-org.github.io/mlr-tutorial/release/html/measures/>.
+#' in the tutorial appendix: <https://mlr.mlr-org.com/articles/tutorial/measures.html>.
 #'
 #' If you want a measure for a misclassification cost matrix, look at [makeCostMeasure].
 #' If you want to implement your own measure, look at [makeMeasure].
@@ -873,23 +873,19 @@ measureBrierScaled = function(probabilities, truth, negative, positive) {
 #' @rdname measures
 #' @format none
 bac = makeMeasure(id = "bac", minimize = FALSE, best = 1, worst = 0,
-  properties = c("classif", "req.pred", "req.truth"),
+  properties = c("classif", "classif.multi", "req.pred", "req.truth"),
   name = "Balanced accuracy",
-  note = "Mean of true positive rate and true negative rate.",
+  note = "For binary tasks, mean of true positive rate and true negative rate.",
   fun = function(task, model, pred, feats, extra.args) {
-    mean(c(tp$fun(pred = pred) / sum(pred$data$truth == pred$task.desc$positive),
-      tn$fun(pred = pred) / sum(pred$data$truth == pred$task.desc$negative)))
+    measureBAC(pred$data$truth, pred$data$response)
   }
 )
 
 #' @export measureBAC
 #' @rdname measures
 #' @format none
-measureBAC = function(truth, response, negative, positive) {
-  mean(c(
-    measureTP(truth, response, positive) / sum(truth == positive),
-    measureTN(truth, response, negative) / sum(truth == negative)
-  ))
+measureBAC = function(truth, response) {
+    mean(diag(table(truth, response) / table(truth, truth)))
 }
 
 #' @export tp
@@ -1267,15 +1263,6 @@ multilabel.f1 = makeMeasure(id = "multilabel.f1", minimize = FALSE, best = 1, wo
   }
 )
 
-#' Deprecated, use `measureMultilabelF1` instead.
-#' @export measureMultiLabelF1
-#' @rdname measures
-#' @format none
-measureMultiLabelF1 = function(truth, response) {
-  .Deprecated("measureMultilabelF1")
-  measureMultilabelF1(truth, response)
-}
-
 #' @export measureMultilabelF1
 #' @rdname measures
 #' @format none
@@ -1383,9 +1370,9 @@ cindex = makeMeasure(id = "cindex", minimize = FALSE, best = 1, worst = 0,
 #' @references
 #' H. Uno et al.
 #' *On the C-statistics for Evaluating Overall Adequacy of Risk Prediction Procedures with Censored Survival Data*
-#' Statistics in medicine. 2011;30(10):1105-1117. <http://dx.doi.org/10.1002/sim.4154>.
+#' Statistics in medicine. 2011;30(10):1105-1117. <https://doi.org/10.1002/sim.4154>.
 cindex.uno = makeMeasure(id = "cindex.uno", minimize = FALSE, best = 1, worst = 0,
-  properties = c("surv", "req.pred", "req.truth", "req.model"),
+  properties = c("surv", "req.pred", "req.truth", "req.model", "req.task"),
   name = "Uno's Concordance index",
   note = "Fraction of all pairs of subjects whose predicted survival times are correctly ordered among all subjects that can actually be ordered. In other words, it is the probability of concordance between the predicted and the observed survival. Corrected by weighting with IPCW as suggested by Uno. Implemented in survAUC::UnoC.",
   fun = function(task, model, pred, feats, extra.args) {
@@ -1406,7 +1393,7 @@ cindex.uno = makeMeasure(id = "cindex.uno", minimize = FALSE, best = 1, worst = 
 #' @references
 #' H. Uno et al.
 #' *Evaluating Prediction Rules for T-Year Survivors with Censored Regression Models*
-#' Journal of the American Statistical Association 102, no. 478 (2007): 527-37. <http://www.jstor.org/stable/27639883>.
+#' Journal of the American Statistical Association 102, no. 478 (2007): 527-37. <https://www.jstor.org/stable/27639883>.
 iauc.uno = makeMeasure(id = "iauc.uno", minimize = FALSE, best = 1, worst = 0,
   properties = c("surv", "req.pred", "req.truth", "req.model", "req.task"),
   name = "Uno's estimator of cumulative AUC for right censored time-to-event data",
@@ -1430,7 +1417,7 @@ iauc.uno = makeMeasure(id = "iauc.uno", minimize = FALSE, best = 1, worst = 0,
 ibrier = makeMeasure(id = "ibrier", minimize = TRUE, best = 0, worst = 1,
   properties = c("surv", "req.truth", "req.model", "req.task"),
   name = "Integrated brier score using Kaplan-Meier estimator for weighting",
-  note = "To set an upper time limit, set argument max.time (defaults to max time in test data). Implemented in pec::pec",
+  note = "Only works for methods for which probabilities are provided via pec::predictSurvProb. Currently these are only coxph and randomForestSRC. To set an upper time limit, set argument max.time (defaults to max time in test data). Implemented in pec::pec",
   fun = function(task, model, pred, feats, extra.args) {
     requirePackages(c("survival", "pec"))
     targets = getTaskTargets(task)
@@ -1440,11 +1427,11 @@ ibrier = makeMeasure(id = "ibrier", minimize = TRUE, best = 0, worst = 1,
     max.time = extra.args$max.time %??% max(newdata[[tn[1L]]])
     grid = seq(0, max.time, length.out = extra.args$resolution)
 
-    probs = predictSurvProb(model$learner.model, newdata = newdata, times = grid)
+    probs = predictSurvProb(getLearnerModel(model, more.unwrap = TRUE), newdata = newdata, times = grid)
     perror = pec(probs, f, data = newdata[, tn], times = grid, exact = FALSE, exactness = 99L,
-      maxtime = max.time, verbose = FALSE)
+      maxtime = max.time, verbose = FALSE, reference = FALSE)
 
-    # FIXME: what is the difference between reference and matrix?
+
     # FIXME: this might be the wrong number!
     crps(perror, times = max.time)[1L, ]
   },
